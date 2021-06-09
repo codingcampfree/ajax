@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>AJAX</title>
+  </head>
+  <body>
+    <button onclick="getmyapi()">get my api</button>
+    <script>
+      //  Make function to do the request
+      function getmyapi() {
+        //Assign the request object to variable
+        var myRequest = new XMLHttpRequest();
+
+        myRequest.onreadystatechange = function () {
+          /* 
+        Ready state => the status of the request 
+        [0] Request Not initialized 
+        [1] Server connection Established 
+        [2] Request recieved
+        [3] Processing request
+        [4] Request is finished and response is ready
+
+        Status => Response status code [200 ok ]
+
+
+        */
+          // if request is finished and response is ready and status code is 200 (ok) output the
+          if (this.readyState === 4 && this.status === 200) {
+            console.log(this.responseText);
+          }
+        };
+        //XMLHttpRequest.open(Metod,url,Async,user,password)
+        myRequest.open(
+          'GET',
+          'https://jsonplaceholder.typicode.com/comments',
+          true
+        );
+        myRequest.send();
+      }
+    </script>
+  </body>
+</html>
